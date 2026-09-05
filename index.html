@@ -1,1 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanStyle - Tienda Streetwear</title>
+    <style>
+        /* Variables de la Paleta Oficial de Colores */
+        :root {
+            /* Colores Principales */
+            --bg-primary: #121212;     /* Fondo principal (Negro elegante) */
+            --bg-surface: #1E1E1E;     /* Fondo de tarjetas, módulos y formularios */
+            --text-primary: #F5F5F5;   /* Texto principal (Blanco suave) */
+            --text-secondary: #888888; /* Texto secundario / subtítulos */
 
+            /* Colores de Acento (UrbanStyle) */
+            --accent-purple: #8E24AA;  /* Morado urbano (Botones secundarios, hover, bordes) */
+            --accent-gold: #D4AF37;    /* Dorado premium (Precios, ofertas, botones de acción) */
+            --accent-gold-hover: #F1C40F; /* Hover de elementos dorados */
+
+            /* Estados y Alertas */
+            --color-error: #FF5252;    /* Mensajes de validación de error */
+            --color-success: #4CAF50;  /* Mensajes de éxito */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-purple);
+        }
+
+        header h1 {
+            letter-spacing: 3px;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 5px;
+        }
+
+        nav {
+            background-color: #000000;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-gold);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .hero {
+            background-color: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border: 1px solid #333333;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            margin: 5px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-gold-hover);
+        }
+
+        .btn-purple {
+            background-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+
+        .btn-purple:hover {
+            opacity: 0.9;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            text-align: center;
+            border: 1px solid #2a2a2a;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .blogs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .blog-card {
+            background: var(--bg-surface);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-purple);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .blog-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .blog-card p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: var(--bg-surface);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>URBANSTYLE</h1>
+    </header>
+
+    <nav>
+        <a href="index.html" class="active">Inicio</a>
+        <a href="productos.html">Catálogo</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="carrito.html">Carrito (<span id="cart-counter">0</span>)</a>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>NUEVA COLECCIÓN STREETWEAR</h2>
+            <p>Ropa oversize, polerones de alta densidad y calzado urbano exclusivo.</p>
+            <div>
+                <a href="productos.html" class="btn">Ver Ropa</a>
+                <a href="productos.html" class="btn btn-purple">Ver Calzado</a>
+            </div>
+        </section>
+
+        <!-- Categorías -->
+        <h2 class="section-title">CATEGORÍAS DESTACADAS</h2>
+        <section class="grid">
+            <div class="card">
+                <h3>Poleras & Polerones</h3>
+                <p>Oversize & Heavy Cotton</p>
+                <a href="productos.html" class="btn btn-purple" style="padding: 6px 12px; font-size:0.8rem;">Explorar</a>
+            </div>
+            <div class="card">
+                <h3>Pantalones</h3>
+                <p>Cargo & Joggers</p>
+                <a href="productos.html" class="btn btn-purple" style="padding: 6px 12px; font-size:0.8rem;">Explorar</a>
+            </div>
+            <div class="card">
+                <h3>Zapatillas</h3>
+                <p>Ediciones Exclusivas</p>
+                <a href="productos.html" class="btn btn-purple" style="padding: 6px 12px; font-size:0.8rem;">Explorar</a>
+            </div>
+            <div class="card">
+                <h3>Accesorios</h3>
+                <p>Caps & Mochilas</p>
+                <a href="productos.html" class="btn btn-purple" style="padding: 6px 12px; font-size:0.8rem;">Explorar</a>
+            </div>
+        </section>
+
+        <!-- Blogs -->
+        <h2 class="section-title">BLOG & NOVEDADES</h2>
+        <section class="blogs-grid">
+            <div class="blog-card">
+                <h4>Tendencias streetwear que marcarán la temporada</h4>
+                <p>Descubre las siluetas, tonos neutros y combinaciones de ropa urbana y calzado retro que dominarán las calles este año.</p>
+            </div>
+            <div class="blog-card">
+                <h4>Guía de tallas y calce perfecto para comprar ropa online</h4>
+                <p>Aprende a medir tus prendas oversize y zapatillas correctamente antes de realizar tu pedido online para asegurar la talla exacta.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 UrbanStyle - Proyecto Integrador</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+            const badge = document.getElementById("cart-counter");
+            if (badge) {
+                badge.textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            }
+        });
+    </script>
+</body>
+</html>
