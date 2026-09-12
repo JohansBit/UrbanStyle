@@ -1,62 +1,61 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto - UrbanStyle</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Contacto -- UrbanStyle</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"><!--conecta con boostrap-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><!-- se conecta con los iconos de boostrap-->
+        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Hace que la página se adapte al ancho de la pantalla del dispositivo (responsive) -->
+        <link rel="icon" type="image/png" href="img/favicon.png">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
 
-    <header>
-        <h1 class="text-center my-3 fw-bold">URBANSTYLE</h1>
+    <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html">URBANSTYLE</a>
-                <div class="collapse navbar-collapse justify-content-center">
-                    <ul class="navbar-nav gap-2">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="productos.html">Catálogo</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="contacto.html">Contacto</a></li>
-                    </ul>
+            <div class="container-fluid justify-content-start"><!-- Usa todo el ancho disponible y coloca los elementos desde el comienzo del contenedor -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/logo.png" alt="UrbanStyle" width="100" height="50">
+                </a>
+                
+                <ul class="navbar-nav me-auto"><!-- Contiene los elementos del menú de navegación y los alinea a la izquierda -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><strong>HOME</strong> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html"><strong>NOSOTROS</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html"><strong>PRODUCTOS</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs.html"><strong>BLOGS</strong></a>
+                    </li>
+                </ul>
+            </nav>
+        <div class="container mt-5 mb-5 text-center">
+            <h1><strong>"CONTACTÀNOS"</strong></h1>
+            <div class="card mt-4">
+                <div class="mb-3">
+                    <label class="form-label"><strong>NOMBRE:</strong> </label>
+                    <input id="n1" name="nombre" type="text" class="form-control">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label"><strong>CORREO ELECTRÒNICO:</strong> </label>
+                    <input id="n2" name="correo" type="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><strong>ASUNTO</strong> </label>
+                    <input id="n3" name="asunto" type="text" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label"><strong>MENSAJE</strong> </label>
+                    <input id="n4" name="mensaje" type="textarea" class="form-control">
+                </div>
+                <button  class="btn btn-primary"><strong>Enviar</strong></button>
             </div>
-        </nav>
-    </header>
-
-    <main class="container my-5 flex-grow-1">
-        <section class="card p-4 mx-auto shadow-sm" style="max-width: 600px;">
-            <h2 class="text-center fw-bold mb-4">Soporte & Consultas</h2>
-            
-            <form id="contactoForm" novalidate>
-                <div class="mb-3">
-                    <label for="nombre" class="form-label fw-bold">Nombre Completo:</label>
-                    <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
-                    <div class="invalid-feedback">Por favor ingresa un nombre válido (mínimo 3 caracteres).</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="correo" class="form-label fw-bold">Correo Electrónico:</label>
-                    <input type="email" id="correo" class="form-control" placeholder="nombre@correo.com" required>
-                    <div class="invalid-feedback">Ingresa un correo electrónico válido.</div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="comentario" class="form-label fw-bold">Mensaje o Comentario:</label>
-                    <textarea id="comentario" class="form-control" rows="4" placeholder="Escribe tu consulta sobre productos o envíos..." required minlength="10"></textarea>
-                    <div class="invalid-feedback">El comentario debe tener al menos 10 caracteres.</div>
-                </div>
-
-                <button type="submit" class="btn btn-dark w-100 fw-bold py-2">Enviar Mensaje</button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
-    </footer>
-
-    <script src="assets/js/contacto.js"></script>
-</body>
+        </div><!--Fin DIV principal-->
+        <footer class="bg-dark text-white text-center py-3 mt-auto">
+            <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
+        </footer>
+    </body>
 </html>
