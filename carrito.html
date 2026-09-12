@@ -4,28 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras - UrbanStyle</title>
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Tu hoja de estilos con la paleta de colores -->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Ajustes de tabla para integrar Bootstrap con el modo oscuro */
+        .table {
+            color: var(--text-main) !important;
+            --bs-table-bg: transparent;
+            --bs-table-color: var(--text-main);
+            border-color: #333;
+        }
+        .table th {
+            color: var(--color-gold);
+            border-bottom: 2px solid var(--color-purple);
+        }
+        .table td {
+            vertical-align: middle;
+            border-color: #2A2A2A;
+        }
+    </style>
 </head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+<body class="d-flex flex-column min-vh-100">
 
     <header>
-        <h1 class="text-center my-3 fw-bold">URBANSTYLE</h1>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <h1 class="text-center my-3 fw-bold text-gold">URBANSTYLE</h1>
+        <nav class="navbar navbar-expand-lg border-bottom" style="background-color: #000; border-color: var(--color-purple) !important;">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html">URBANSTYLE</a>
-                <a class="btn btn-outline-light" href="productos.html">Seguir Comprando</a>
+                <a class="navbar-brand fw-bold text-gold" href="index.html">URBANSTYLE</a>
+                <a class="btn btn-gold" href="productos.html" style="width: auto;">Seguir Comprando</a>
             </div>
         </nav>
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <h2 class="fw-bold mb-4">CARRITO DE COMPRAS</h2>
+        <h2 class="fw-bold mb-4 text-gold">CARRITO DE COMPRAS</h2>
 
         <div class="row g-4">
             <div class="col-lg-8">
-                <div class="table-responsive bg-white shadow-sm rounded p-3">
-                    <table class="table align-middle">
+                <!-- Tarjeta oscura adaptada a la paleta -->
+                <div class="table-responsive auth-card w-100 max-width-none" style="max-width: 100%;">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Producto</th>
@@ -43,23 +63,24 @@
             </div>
 
             <div class="col-lg-4">
-                <div class="card border-0 shadow-sm p-4">
-                    <h4 class="fw-bold mb-3">Resumen del Pedido</h4>
-                    <hr>
+                <!-- Tarjeta de resumen de pedido oscura -->
+                <div class="auth-card w-100" style="max-width: 100%;">
+                    <h4 class="fw-bold mb-3 text-gold">Resumen del Pedido</h4>
+                    <hr style="color: var(--color-purple);">
                     <div class="d-flex justify-content-between fs-5 fw-bold mb-4">
                         <span>Total:</span>
-                        <span id="total-precio">$0</span>
+                        <span id="total-precio" class="text-gold">$0</span>
                     </div>
-                    <button onclick="procesarCompra()" class="btn btn-dark w-100 btn-lg fw-bold">Ir al Pago / Checkout</button>
+                    <button onclick="procesarCompra()" class="btn-gold">Ir al Pago / Checkout</button>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
+    <footer class="text-center py-3 mt-auto border-top" style="background-color: var(--bg-card); border-color: #333 !important;">
+        <p class="m-0" style="color: var(--text-muted);">UrbanStyle Boutique &copy; 2026</p>
     </footer>
 
-    <script src="assets/js/carrito.js"></script>
+    <script src="carrito.js"></script>
 </body>
 </html>

@@ -4,27 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo - UrbanStyle</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body class="d-flex flex-column min-vh-100 bg-light">
+    
+    <style>
+        .btn-filter {
+            background-color: #18181c;
+            color: #ffffff;
+            border: 1px solid #6a1b9a;
+            padding: 8px 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
 
-    <!-- Navbar -->
+        .btn-filter:hover, .btn-filter.active {
+            background-color: #6a1b9a !important;
+            color: #ffffff !important;
+            border-color: #6a1b9a !important;
+        }
+
+        .product-card {
+            background-color: #18181c;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: #d4af37;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100" style="background-color: #0f0f12; color: #ffffff;">
+
     <header>
-        <h1 class="text-center my-3 fw-bold tracking-tight">URBANSTYLE</h1>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <h1 class="text-center my-3 fw-bold" style="color: #d4af37;">URBANSTYLE</h1>
+        <nav class="navbar navbar-expand-lg border-bottom" style="background-color: #000; border-color: #6a1b9a !important;">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="index.html">URBANSTYLE</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <a class="navbar-brand fw-bold" style="color: #d4af37;" href="index.html">URBANSTYLE</a>
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav gap-2">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="productos.html">Catálogo</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+                    <ul class="navbar-nav gap-2 align-items-center">
+                        <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active fw-bold" style="color: #d4af37;" href="productos.html">Catálogo</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
                         <li class="nav-item">
-                            <a class="nav-link btn btn-outline-light px-3 ms-lg-3" href="carrito.html">
+                            <a class="nav-link btn px-3 ms-lg-3 text-dark fw-bold text-decoration-none" style="background-color: #d4af37;" href="carrito.html">
                                 Carrito (<span id="cart-counter">0</span>)
                             </a>
                         </li>
@@ -35,29 +83,259 @@
     </header>
 
     <main class="container my-5 flex-grow-1">
-        <h2 class="fw-bold mb-4 text-center">COLECCIONES URBANAS</h2>
+        
+        <!-- 1. SECCIÓN ZAPATILLAS -->
+        <section class="mb-5 p-4 rounded" style="background-color: #18181c; border: 1px solid #6a1b9a;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <h2 class="fw-bold m-0" style="color: #d4af37;">ZAPATILLAS</h2>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-filter active" onclick="filtrarSeccion('zapatillas', 'todos', this)">Todas</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('zapatillas', 'hombre', this)">Hombre</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('zapatillas', 'mujer', this)">Mujer</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('zapatillas', 'nino', this)">Niños</button>
+                </div>
+            </div>
+            <div class="row g-4" id="seccion-zapatillas"></div>
+        </section>
 
-        <!-- Filtros por Categoría -->
-        <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
-            <button class="btn btn-dark filter-btn active" onclick="filtrarProductos('todos')">Todos</button>
-            <button class="btn btn-outline-dark filter-btn" onclick="filtrarProductos('poleras-polerones')">Poleras & Polerones</button>
-            <button class="btn btn-outline-dark filter-btn" onclick="filtrarProductos('pantalones')">Pantalones</button>
-            <button class="btn btn-outline-dark filter-btn" onclick="filtrarProductos('zapatillas')">Zapatillas</button>
-            <button class="btn btn-outline-dark filter-btn" onclick="filtrarProductos('accesorios')">Accesorios</button>
-        </div>
+        <!-- 2. SECCIÓN POLERAS & POLERONES -->
+        <section class="mb-5 p-4 rounded" style="background-color: #18181c; border: 1px solid #6a1b9a;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <h2 class="fw-bold m-0" style="color: #d4af37;">POLERAS & POLERONES</h2>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-filter active" onclick="filtrarSeccion('poleras-polerones', 'todos', this)">Todas</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('poleras-polerones', 'hombre', this)">Hombre</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('poleras-polerones', 'mujer', this)">Mujer</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('poleras-polerones', 'nino', this)">Niños</button>
+                </div>
+            </div>
+            <div class="row g-4" id="seccion-poleras-polerones"></div>
+        </section>
 
-        <!-- Grid de Productos -->
-        <div class="row g-4" id="grid-productos">
-            <!-- Renderizado dinámico vía JavaScript -->
-        </div>
+        <!-- 3. SECCIÓN PANTALONES -->
+        <section class="mb-5 p-4 rounded" style="background-color: #18181c; border: 1px solid #6a1b9a;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <h2 class="fw-bold m-0" style="color: #d4af37;">PANTALONES</h2>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-filter active" onclick="filtrarSeccion('pantalones', 'todos', this)">Todos</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('pantalones', 'hombre', this)">Hombre</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('pantalones', 'mujer', this)">Mujer</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('pantalones', 'nino', this)">Niños</button>
+                </div>
+            </div>
+            <div class="row g-4" id="seccion-pantalones"></div>
+        </section>
+
+        <!-- 4. SECCIÓN ACCESORIOS -->
+        <section class="mb-5 p-4 rounded" style="background-color: #18181c; border: 1px solid #6a1b9a;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
+                <h2 class="fw-bold m-0" style="color: #d4af37;">ACCESORIOS</h2>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-filter active" onclick="filtrarSeccion('accesorios', 'todos', this)">Todos</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('accesorios', 'hombre', this)">Hombre</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('accesorios', 'mujer', this)">Mujer</button>
+                    <button type="button" class="btn btn-filter" onclick="filtrarSeccion('accesorios', 'nino', this)">Niños</button>
+                </div>
+            </div>
+            <div class="row g-4" id="seccion-accesorios"></div>
+        </section>
+
     </main>
 
-    <footer class="bg-dark text-white text-center py-3 mt-auto">
-        <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
+    <footer class="text-center py-3 mt-auto border-top" style="background-color: #18181c; border-color: #333 !important;">
+        <p class="m-0" style="color: #a0a0a0;">UrbanStyle Boutique &copy; 2026</p>
     </footer>
 
-    <script src="assets/js/productos-data.js"></script>
-    <script src="assets/js/catalogo.js"></script>
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JS UNIFICADO (DATOS Y LÓGICA) -->
+    <script>
+        const PRODUCTOS = [
+            // POLERAS & POLERONES
+            {
+                id: 1,
+                nombre: "Polerón Adidas",
+                categoria: "poleras-polerones",
+                genero: "hombre",
+                precio: 39990,
+                imagen: "polerondidas.jpg",
+                descripcion: "Polerón urbano."
+            },
+            {
+                id: 10,
+                nombre: "Polera Crop Purple Street",
+                categoria: "poleras-polerones",
+                genero: "mujer",
+                precio: 24990,
+                imagen: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Polera estilo crop de algodón orgánico con estampado gráfico en la espalda."
+            },
+            {
+                id: 11,
+                nombre: "Polerón niño",
+                categoria: "poleras-polerones",
+                genero: "niño",
+                precio: 29990,
+                imagen: "poleronniño.jpg",
+                descripcion: "Polerón urbano cómodo y resistente para niños con diseño de la marca."
+            },
+            // PANTALONES
+            {
+                id: 2,
+                nombre: "Pantalón Cargo",
+                categoria: "pantalones",
+                genero: "hombre",
+                precio: 45990,
+                imagen: "cargo.jpg",
+                descripcion: "Pantalón cargo con bolsillos múltiples y ajuste en tobillos."
+            },
+            {
+                id: 20,
+                nombre: "Jogger Baggy Black Gold",
+                categoria: "pantalones",
+                genero: "mujer",
+                precio: 42990,
+                imagen: "https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Jogger de tiro alto con detalles dorados y pretina elastizada ultra cómoda."
+            },
+            {
+                id: 21,
+                nombre: "Pantalón Cargo Street Kids",
+                categoria: "pantalones",
+                genero: "niño",
+                precio: 28990,
+                imagen: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Pantalón cargo infantil reforzado en rodillas para máxima durabilidad."
+            },
+            // ZAPATILLAS
+            {
+                id: 3,
+                nombre: "Zapatillas Urban Runner Retro '88",
+                categoria: "zapatillas",
+                genero: "hombre",
+                precio: 89990,
+                imagen: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Zapatillas exclusivas de edición limitada con suela de alta tracción y capellada de cuero."
+            },
+            {
+                id: 30,
+                nombre: "Zapatillas Air max 90",
+                categoria: "zapatillas",
+                genero: "mujer",
+                precio: 95990,
+                imagen: "airmax.jpg",
+                descripcion: "Sneakers de caña alta con combinación de tonos morados y plantilla amortiguada."
+            },
+            {
+                id: 31,
+                nombre: "Zapatillas Gold Kids 2.0",
+                categoria: "zapatillas",
+                genero: "niño",
+                precio: 59990,
+                imagen: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Zapatillas urbanas infantiles con cierre de velcro y detalles dorados."
+            },
+            // ACCESORIOS
+            {
+                id: 4,
+                nombre: "Jockey rojo Jordan",
+                categoria: "accesorios",
+                genero: "hombre",
+                precio: 45000,
+                imagen: "jockey.jpg",
+                descripcion: "Jockey de 5 paneles con bordado frontal en relieve y cierre ajustable."
+            },
+            {
+                id: 40,
+                nombre: "Mochila Urban Gold",
+                categoria: "accesorios",
+                genero: "mujer",
+                precio: 22990,
+                imagen: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+                descripcion: "Banano impermeable con compartimentos con cierre y correa dorada ajustable."
+            },
+            {
+                id: 41,
+                nombre: "Gorro Jordan",
+                categoria: "accesorios",
+                genero: "niño",
+                precio: 12990,
+                imagen: "jordan.jpg",
+                descripcion: "jockey suave para niños con logo Jordan."
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const categorias = ['zapatillas', 'poleras-polerones', 'pantalones', 'accesorios'];
+            categorias.forEach(cat => cargarProductosPorCategoria(cat, 'todos'));
+            actualizarContadorCarrito();
+        });
+
+        function cargarProductosPorCategoria(categoria, genero) {
+            const contenedor = document.getElementById(`seccion-${categoria}`);
+            if (!contenedor) return;
+
+            let filtrados = PRODUCTOS.filter(p => p.categoria === categoria);
+
+            if (genero !== 'todos') {
+                filtrados = filtrados.filter(p => p.genero === genero);
+            }
+
+            if (filtrados.length === 0) {
+                contenedor.innerHTML = `<div class="col-12"><p class="text-center text-muted py-4 m-0">No hay productos disponibles para este género.</p></div>`;
+                return;
+            }
+
+            contenedor.innerHTML = filtrados.map(p => `
+                <div class="col-sm-6 col-md-4">
+                    <div class="product-card">
+                        <img src="${p.imagen}" alt="${p.nombre}">
+                        <h5 class="fw-bold text-light mt-2">${p.nombre}</h5>
+                        <p class="text-uppercase small m-0" style="color: #d4af37;">${p.genero}</p>
+                        <p class="price-tag mb-3">$${p.precio.toLocaleString("es-CL")}</p>
+                        <div class="d-flex gap-2">
+                            <a href="producto-detalle.html?id=${p.id}" class="btn btn-outline-light btn-sm w-50 d-flex align-items-center justify-content-center">Ver</a>
+                            <button onclick="agregarAlCarrito(${p.id})" class="btn btn-sm w-50 fw-bold" style="background-color: #d4af37; color: #000;">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function filtrarSeccion(categoria, genero, boton) {
+            if (boton) {
+                const contenedorBotones = boton.parentElement;
+                contenedorBotones.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+                boton.classList.add('active');
+            }
+            cargarProductosPorCategoria(categoria, genero);
+        }
+
+        function agregarAlCarrito(idProducto) {
+            let carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+            const itemExistente = carrito.find(item => item.id === idProducto);
+
+            if (itemExistente) {
+                itemExistente.cantidad++;
+            } else {
+                const productoBase = PRODUCTOS.find(p => p.id === idProducto);
+                if (productoBase) {
+                    carrito.push({ ...productoBase, cantidad: 1 });
+                }
+            }
+
+            localStorage.setItem("carrito_urbanstyle", JSON.stringify(carrito));
+            actualizarContadorCarrito();
+            alert("¡Producto añadido al carrito!");
+        }
+
+        function actualizarContadorCarrito() {
+            const carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            const badge = document.getElementById("cart-counter");
+            if (badge) badge.textContent = totalItems;
+        }
+    </script>
 </body>
 </html>

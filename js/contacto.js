@@ -10,6 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const correo = document.getElementById("correo");
         const comentario = document.getElementById("comentario");
 
+        // --- MEJORA INTEGRADA AQUÍ ---
+        // Limpia el borde rojo en cuanto el usuario empieza a escribir
+        [nombre, correo, comentario].forEach(input => {
+            input.addEventListener("input", () => {
+                if (input.classList.contains("is-invalid")) {
+                    input.classList.remove("is-invalid");
+                }
+            });
+        });
+
         let esValido = true;
 
         // Validar Nombre
