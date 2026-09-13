@@ -40,16 +40,19 @@
                 <section class="auth-card">
                  
                 <h2>Iniciar Sesión</h2>
-                <form id="inicioForm" action="" method="post">
+                <form id="loginForm" action="" method="post">
                     <div class="form-group"> 
-                        <label for="username">Nombre de Usuario</label> 
-                        <input class="form-control" name="text" id="username" placeholder="John Doe" required> 
+                        <label for="correo">Correo Electrónico</label> 
+                        <input class="form-control" name="correo" id="loginEmail"  type="text" placeholder="Johndoe1@duoc.cl" required> 
                     </div>    
                     <div class="form-group"> 
                         <label for="password">Contraseña</label>  
-                        <input class="form-control" name="password" id="password" placeholder="Contraseña" required>
+                        <input class="form-control" name="pass" id="loginPass" placeholder="Contraseña" required>
                     </div>
-                    <button class="btn-gold" type="submit">Ingresar</button>
+                    <p id="errorLogin" class="error-mensaje" style="display: none; text-align: center; margin-bottom: 15px;">
+                        Credenciales Inválidas
+                    </p>
+                    <button type="submit" class="btn-gold" type="submit">Ingresar</button>
                     <p>¿No tienes una cuenta?</p>
                     <a href="registro.html" class="text-link">Regístrate</a>
                 </form>
@@ -59,7 +62,7 @@
 
 
 
-
+        <script src="js/main.js"></script>
     </body>
 
 
