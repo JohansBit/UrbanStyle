@@ -31,6 +31,41 @@ body {
 /* Tipografía en Dorado y Morado */
 .text-gold { color: var(--color-gold); }
 .text-purple { color: var(--color-purple); }
+.text-link {
+  color: var(--text-main);
+  text-decoration:none;
+  transition: color 0.3s;}
+
+.text-link:hover{
+  color: var(--color-purple-hover)
+}
+/* Nav Bar */
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-card);
+  padding: 12px 40px;
+}
+.navbar-nav{
+  display: flex;
+  flex-direction:row ;
+  gap: 20px;              /* espacio entre links */
+  list-style: none;       /* quita viñetas */
+  margin: 0;
+  padding: 0;
+}
+
+.navbar .nav-link {
+  color: var(--text-main);       /* blanco por defecto */
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+  color: var(--color--gold);
+}
 
 /* Contenedores */
 .auth-container {
@@ -38,7 +73,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  padding-bottom: 80px;
 }
 
 .auth-card {
@@ -46,6 +81,7 @@ body {
   border: 1px solid #333;
   border-top: 4px solid var(--color-gold); 
   border-radius: 8px;
+  margin-bottom: 80px;
   padding: 40px;
   width: 100%;
   max-width: 450px;
@@ -127,6 +163,14 @@ body {
     height: 100%;
     overflow: hidden;
 }
+/* Ajuste de logo principal*/
+.logo{
+  display:block;
+  margin:0 auto;
+  width: 250px; 
+  height: 130px;
+}
+
 
 /* Hace que la imagen ocupe todo el espacio del Hero */
 .hero img {
