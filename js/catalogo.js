@@ -1,7 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-    renderizarProductos(PRODUCTOS);
+    const productos = obtenerProductosCatalogo();
+    renderizarProductos(productos)
     actualizarContadorCarrito();
 });
+
+function obtenerProductosCatalogo(){
+    const data =localStorage.getItem("urbanstyle_prod");
+    if(!data){
+        if(typeof PRODUCTOS !== "undefined"){
+            localStorage.setItem("urbanstyle_prod", JSON.stringify(PRODUCTOS));
+            return PRODUCTOS
+        }
+        return [];
+    }
+    return JSON.parse(data);
+}
+
 
 function renderizarProductos(lista) {
     const contenedor = document.getElementById("grid-productos");
@@ -9,7 +23,16 @@ function renderizarProductos(lista) {
     
     contenedor.innerHTML = "";
 
+    if(lista.length === 0){
+        contenedor.innerHTML = '<div class="col-12 text-center text-muted py-5">No hay productos disponibles en esta categoria.</div>';
+        return;
+    }
+
     lista.forEach(prod => {
+
+        const idIdentificador = prod.codigo || prod.id;
+        const sinStock = prod.stock <=0;
+
         const col = document.createElement("div");
         col.className = "col-md-4 col-sm-6";
         col.innerHTML = `
@@ -33,25 +56,49 @@ function renderizarProductos(lista) {
 }
 
 function filtrarProductos(categoria) {
+    const productos = obtenerProductosCatalogo();
     if (categoria === "todos") {
-        renderizarProductos(PRODUCTOS);
+        renderizarProductos(productos);
     } else {
-        const filtrados = PRODUCTOS.filter(p => p.categoria === categoria);
+        const filtrados = productos.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
         renderizarProductos(filtrados);
     }
 }
 
-function agregarAlCarrito(idProducto) {
+function agregarAlCarrito(codigoProducto) {
     let carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
-    const itemExistente = carrito.find(item => item.id === idProducto);
+    const productos = obtenerProductosCatalogo();
+    const productoBase = productos.find(p => (p.codigo || p.id) == codigoProducto);
+
+    if(!productoBase){
+        alert("Producto no encontrado.");
+        return;
+    }
+
+    if(productoBase.stock<=0){
+        alert("Este producto se encuentra agotado.");
+        return;
+    }
+
+    const itemExistente = carrito.find(item => (item.id === item.codigo) == codigoProducto);
 
     if (itemExistente) {
+        if(itemExistente.cantidad>=productoBase.stock){
+            alert("No puedes agregar mas unidades. Stock Disponible: ${productoBase.stock}");
+            return;
+        }
         itemExistente.cantidad++;
     } else {
-        const productoBase = PRODUCTOS.find(p => p.id === idProducto);
-        if (productoBase) {
-            carrito.push({ ...productoBase, cantidad: 1 });
-        }
+        carrito.push({
+            codigo: productoBase.codigo || productoBase.id,
+            nombre: productoBase.nombre,
+            precio: productoBase.precio,
+            imagen: productoBase.imagen,
+            cantidad: 1,
+            stockMaximo: productoBase.stock
+
+        });
+        
     }
 
     localStorage.setItem("carrito_urbanstyle", JSON.stringify(carrito));

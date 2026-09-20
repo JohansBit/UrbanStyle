@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", function(){
                 region:"Region Metropolitana",
                 comuna:"Santiago",
                 direccion:"Av. Principal 123"
+            },
+            {
+                nombre:"Admin",
+                apellido:"Urban",
+                run:"22222222-2",
+                correo:"admin@urbanstyle.cl",
+                pass:"1234",
+                region:"Region Metropolitana",
+                comuna:"Santiago",
+                direccion:"Av Siempre viva 1244"
             }
         ];
         

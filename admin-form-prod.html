@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ingreso Productos - Admin UrbanStyle</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="icon" type="image/png" href="img/favicon.png">
+    </head>
+    <body>
+        <nav class="navbar">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/logo.png" alt="UrbanStyle" class="logo">
+                </a>
+                
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><strong>HOME</strong> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="nosotros.html"><strong>NOSOTROS</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos.html"><strong>PRODUCTOS</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs.html"><strong>BLOGS</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html"><strong>CONTACTO</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-home.html"><strong>ADMIN-HOME</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin-productos.html"><strong>ADMIN-PRODUCTOS</strong></a>
+                    </li>
+
+                </ul>
+        </nav>
+        <main class="form-prod-container">
+            <div class="form-card">
+
+                <header class="form-header">
+                    <h2 id="formTitulo">Nuevo Producto</h2>
+                    <p>Rellena la informacion del producto.</p>
+                </header>
+                           
+                <form id="formProducto" novalidate>
+                    <div class="form-row">
+                        <div class=" form-group flex-1">
+                            <label for="prodCodigo"> Codigo  del Producto (SKU)* </label>
+                            <input type="text" id="prodCodigo" name="codigo" placeholder="EJ: POL-001" required>
+                            <span class="error-message" id="errorCodigo"></span>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="prodCategoria">Categoria *</label>
+                            <select id="prodCategoria" name="categoria" required>
+                                <option value="">-- Seleccionar Categoria --</option>
+                                <option value="POL"> POLERAS </option>
+                                <option value="PANT"> PANTALONES </option>
+                                <option value="ZAPT"> ZAPATILLAS </option>
+                                <option value="ACCS"> ACCESORIOS </option>
+                            </select>
+                            <span class="error-message" id="errorCategoria"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="prodNombre">Nombre del Producto</label>
+                        <input type="text" id="prodNombre" name="prodNombre" maxlength="100" required>
+                        <span class="error-message" id="errorNombre"></span>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group flex-1">                 
+                        <label for="prodPrecio">Precio ($)</label>
+                        <input type="number" id="prodPrecio" name="prodPrecio" min="0" step="any" required>
+                        <span class="error-message" id="errorPrecio"></span>
+                        </div>
+
+                        <div class="form-group flex-1">                 
+                        <label for="prodStock">Stock Inicial</label>
+                        <input type="number" id="prodStock" name="prodStock"  min="0" step="1" required>
+                        <span class="error-message" id="errorStock"></span>
+                        </div>
+
+                        <div class="form-group flex-1">                 
+                        <label for="prodStockCrit">Stock Critico</label>
+                        <input type="number" id="prodStockCritico" name="prodStockCrit" min="0" step="1" required>
+                        <span class="error-message" id="errorStockCrit"></span>
+                        </div>
+                    </div>
+                        <div class="form-group">                 
+                        <label for="prodImagen">Ruta de Imagen</label>
+                        <input type="text" id="prodImagen" name="prodImagen">
+                        <span class="error-message" id="errorImagen"></span>
+                        </div>
+
+                        <div class="form-group">                 
+                        <label for="prodDescricion">Descripcion del Producto</label>
+                        <input type="text" id="prodDescripcion" name="prodDescripcion" rows="4" maxlength="500">
+                        <span class="error-message" id="errorDescripcion"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">                 
+                        <a  href="admin-productos.html" class="btn-cancelar">Cancelar</a>
+                        <button type="submit" class="btn-guardar" id="btnGuardar">Guardar Producto</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <script src="js/productos-data.js"></script>
+        <script src="js/validaciones.js"></script>
+    </body>
+</html>
+
