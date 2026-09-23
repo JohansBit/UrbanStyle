@@ -248,3 +248,33 @@ Docente: Gerardo Marchant — Asignatura: DSY1104.
 *Documento generado como base de trabajo — Entrega 1, versión 3 (paleta de colores y
 estructura de carpetas alineadas con la propuesta del equipo: negro elegante + morado
 urbano + dorado premium, Bootstrap + CSS propio).*
+
+## Problemas encontrados y soluciones
+
+### Problema con la reproducción de videos de YouTube
+
+Durante el desarrollo de la página de Blogs se presentó un problema al intentar insertar videos de YouTube mediante un `<iframe>`. Al abrir directamente los archivos HTML desde el computador, el reproductor mostraba el **Error 153** y no permitía reproducir el video.
+
+Primero se comprobó que el problema no estaba relacionado con que el video fuera un Short ni con su formato vertical. También se probó con otro video de YouTube y se obtuvo el mismo resultado.
+
+### Solución
+
+Se instaló la extensión **Live Server** en Visual Studio Code y se ejecutó la página mediante un servidor local.
+
+Antes:
+
+```text
+file:///.../blogs.html
+```
+
+Después:
+
+```text
+http://127.0.0.1:5500/blogs.html
+```
+
+Al ejecutar la página mediante Live Server, el video de YouTube pudo reproducirse correctamente dentro del sitio.
+
+### Conclusión
+
+El problema se producía al abrir el archivo HTML directamente desde el computador. La solución fue ejecutar el proyecto mediante un servidor local utilizando Live Server, lo que permitió que el contenido incrustado de YouTube funcionara correctamente.
