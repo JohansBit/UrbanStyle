@@ -159,12 +159,12 @@
                 categoria: "poleras-polerones",
                 genero: "hombre",
                 precio: 39990,
-                imagen: "PoleronAdidas.jpg",
+                imagen: "img/Polerondidas.jpg",
                 descripcion: "Polerón urbano."
             },
             {
                 id: 10,
-                nombre: "Polera Crop Purple Street",
+                nombre: "Polera Crop ",
                 categoria: "poleras-polerones",
                 genero: "mujer",
                 precio: 24990,
@@ -177,7 +177,7 @@
                 categoria: "poleras-polerones",
                 genero: "niño",
                 precio: 29990,
-                imagen: "poleronnino.jpg",
+                imagen: "img/poleronniño.jpg",
                 descripcion: "Polerón urbano cómodo y resistente para niños con diseño de la marca."
             },
             // PANTALONES
@@ -187,12 +187,12 @@
                 categoria: "pantalones",
                 genero: "hombre",
                 precio: 45990,
-                imagen: "cargo.jpg",
+                imagen: "img/cargo.jpg",
                 descripcion: "Pantalón cargo con bolsillos múltiples y ajuste en tobillos."
             },
             {
                 id: 20,
-                nombre: "Jogger Baggy Black Gold",
+                nombre: "Jeans",
                 categoria: "pantalones",
                 genero: "mujer",
                 precio: 42990,
@@ -224,7 +224,7 @@
                 categoria: "zapatillas",
                 genero: "mujer",
                 precio: 95990,
-                imagen: "airmax.jpg",
+                imagen: "img/ama.jpg",
                 descripcion: "Sneakers de caña alta con combinación de tonos morados y plantilla amortiguada."
             },
             {
@@ -243,12 +243,12 @@
                 categoria: "accesorios",
                 genero: "hombre",
                 precio: 45000,
-                imagen: "jockey.jpg",
+                imagen: "img/jockey.jpg",
                 descripcion: "Jockey de 5 paneles con bordado frontal en relieve y cierre ajustable."
             },
             {
                 id: 40,
-                nombre: "Mochila Urban Gold",
+                nombre: "Mochila Urban",
                 categoria: "accesorios",
                 genero: "mujer",
                 precio: 22990,
@@ -261,7 +261,7 @@
                 categoria: "accesorios",
                 genero: "niño",
                 precio: 12990,
-                imagen: "jordan.jpg",
+                imagen: "img/jordan.jpg",
                 descripcion: "jockey suave para niños con logo Jordan."
             }
         ];
@@ -295,7 +295,6 @@
                         <p class="text-uppercase small m-0" style="color: #d4af37;">${p.genero}</p>
                         <p class="price-tag mb-3">$${p.precio.toLocaleString("es-CL")}</p>
                         <div class="d-flex gap-2">
-                            <a href="producto-detalle.html?id=${p.id}" class="btn btn-outline-light btn-sm w-50 d-flex align-items-center justify-content-center">Ver</a>
                             <button onclick="agregarAlCarrito(${p.id})" class="btn btn-sm w-50 fw-bold" style="background-color: #d4af37; color: #000;">Añadir</button>
                         </div>
                     </div>
