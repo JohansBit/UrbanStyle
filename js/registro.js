@@ -52,7 +52,7 @@ selectRegion.addEventListener("change", function(){
 function validarRut(run){
     const runLimpio = run.replace(/[\.\-]/g,"").trim().toUpperCase();
 
-    if(runLimpio.length < 7 || runLimpio > 9){
+    if(runLimpio.length < 7 || runLimpio.length > 9){
         return false;
     }
 
