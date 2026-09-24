@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
     const productos = obtenerProductosCatalogo();
-    renderizarProductos(productos)
+    renderizarProductos(productos);
     actualizarContadorCarrito();
 });
 
 function obtenerProductosCatalogo(){
-    const data =localStorage.getItem("urbanstyle_productos");
+    const data = localStorage.getItem("urbanstyle_productos");
     if(!data){
-        if(typeof PRODUCTOS !== "undefined"){
-            localStorage.setItem("urbanstyle_productos", JSON.stringify(PRODUCTOS));
-            return PRODUCTOS
+        if(typeof PRODUCTOS_BASE !== "undefined"){
+            localStorage.setItem("urbanstyle_productos", JSON.stringify(PRODUCTOS_BASE));
+            return PRODUCTOS_BASE;
         }
         return [];
     }
@@ -31,21 +31,21 @@ function renderizarProductos(lista) {
     lista.forEach(prod => {
 
         const idIdentificador = prod.codigo || prod.id;
-        const sinStock = prod.stock <=0;
+        const sinStock = prod.stock <= 0;
 
         const col = document.createElement("div");
         col.className = "col-md-4 col-sm-6";
         col.innerHTML = `
             <div class="card h-100 shadow-sm border-0">
-                <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="height: 280px; object-fit: cover;">
+                <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}" style="height: 280px; object-fit: cover;" onerror="this.src='img/placeholder.png'">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold">${prod.nombre}</h5>
-                    <p class="card-text text-muted flex-grow-1">${prod.descripcion}</p>
+                    <p class="card-text text-muted flex-grow-1">${prod.descripcion || ''}</p>
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <span class="fs-5 fw-bold">$${prod.precio.toLocaleString("es-CL")}</span>
                         <div class="btn-group">
-                            <a href="producto-detalle.html?id=${prod.id}" class="btn btn-outline-dark btn-sm">Ver Detalle</a>
-                            <button onclick="agregarAlCarrito(${prod.id})" class="btn btn-dark btn-sm">Añadir</button>
+                            <a href="producto-detalle.html?sku=${idIdentificador}" class="btn btn-outline-dark btn-sm">Ver Detalle</a>
+                            <button onclick="agregarAlCarrito('${idIdentificador}')" class="btn btn-dark btn-sm" ${sinStock ? 'disabled' : ''}>${sinStock ? 'Sin Stock' : 'Añadir'}</button>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@ function filtrarProductos(categoria) {
     if (categoria === "todos") {
         renderizarProductos(productos);
     } else {
-        const filtrados = productos.filter(p => p.categoria.toLowerCase() === categoria.toLowerCase());
+        const filtrados = productos.filter(p => p.categoria.toUpperCase() === categoria.toUpperCase());
         renderizarProductos(filtrados);
     }
 }
@@ -75,30 +75,29 @@ function agregarAlCarrito(codigoProducto) {
         return;
     }
 
-    if(productoBase.stock<=0){
+    if(productoBase.stock <= 0){
         alert("Este producto se encuentra agotado.");
         return;
     }
 
-    const itemExistente = carrito.find(item => (item.id === item.codigo) == codigoProducto);
+    const itemExistente = carrito.find(item => (item.codigo || item.id) == codigoProducto);
 
     if (itemExistente) {
-        if(itemExistente.cantidad>=productoBase.stock){
-            alert("No puedes agregar mas unidades. Stock Disponible: ${productoBase.stock}");
+        if(itemExistente.cantidad >= productoBase.stock){
+            alert(`No puedes agregar mas unidades. Stock Disponible: ${productoBase.stock}`);
             return;
         }
         itemExistente.cantidad++;
     } else {
         carrito.push({
+            id: productoBase.id,
             codigo: productoBase.codigo || productoBase.id,
             nombre: productoBase.nombre,
             precio: productoBase.precio,
             imagen: productoBase.imagen,
             cantidad: 1,
             stockMaximo: productoBase.stock
-
         });
-        
     }
 
     localStorage.setItem("carrito_urbanstyle", JSON.stringify(carrito));

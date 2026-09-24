@@ -170,6 +170,7 @@ form.addEventListener("submit", function(event){
             run:run,
             correo:correo,
             pass: pass,
+            rol:"Cliente",
             region:region,
             comuna:comuna,
             direccion:direccion
