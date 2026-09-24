@@ -1,4 +1,4 @@
-// Arreglo global de productos para la tienda UrbanStyle
+
 const PRODUCTOS_BASE = [
     {
         id: 1,
@@ -8,7 +8,7 @@ const PRODUCTOS_BASE = [
         precio: 24990,
         stock: 15,
         stockCritico: 3,
-        imagen: "img/productos/polera-black.webp",
+        imagen: "img/prod/polera-black.webp",
         descripcion: "Polera lisa de corte boxy fit en algodón pesado 240 GSM con cuello cerrado acanalado."
     },
     {
@@ -19,7 +19,7 @@ const PRODUCTOS_BASE = [
         precio: 42990,
         stock: 8,
         stockCritico: 2,
-        imagen: "img/productos/hoodie-acid-wash.webp",
+        imagen: "img/prod/hoodie-acid-wash.webp",
         descripcion: "Polerón con capucha y efecto lavado ácido púrpura vintage, bolsillo canguro y calce holgado."
     },
     {
@@ -30,7 +30,7 @@ const PRODUCTOS_BASE = [
         precio: 38990,
         stock: 10,
         stockCritico: 3,
-        imagen: "img/productos/hoodie-oversize-black.webp",
+        imagen: "img/prod/hoodie-oversize-black.webp",
         descripcion: "Polerón básico de cuello redondo en franela perchada pesada con hombros caídos."
     },
     {
@@ -41,7 +41,7 @@ const PRODUCTOS_BASE = [
         precio: 45990,
         stock: 6,
         stockCritico: 2,
-        imagen: "img/productos/streetwear-hoodie.webp",
+        imagen: "img/prod/streetwear-hoodie.webp",
         descripcion: "Hoodie con diseño superpuesto de doble manga, capucha bicolor y cordones largos técnicos."
     },
     {
@@ -52,7 +52,7 @@ const PRODUCTOS_BASE = [
         precio: 36990,
         stock: 12,
         stockCritico: 4,
-        imagen: "img/productos/pantalon-cargo-wide-leg.jpg",
+        imagen: "img/prod/pantalon-cargo-wide-leg.jpg",
         descripcion: "Pantalón de corte ancho en gabardina color café con bolsillos fuelle laterales y pinzas de volumen."
     },
     {
@@ -63,7 +63,7 @@ const PRODUCTOS_BASE = [
         precio: 79990,
         stock: 5,
         stockCritico: 2,
-        imagen: "img/productos/sneacker-retro-gold.webp",
+        imagen: "img/prod/sneacker-retro-gold.webp",
         descripcion: "Zapatilla urbana retro combinada en gamuza y cuero texturizado en tonos arena y mostaza."
     },
     {

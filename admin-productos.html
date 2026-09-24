@@ -48,7 +48,7 @@
             <ul class="producto-slider">
                 <li class="producto-card">
                     <a href="admin-form-prod.html?sku=POL-001" class="prod-img-link">
-                        <img src="img/prod/polera-black.webp" alt="Polera Oversized Black" onerror="this.src=img/placeholder.png">
+                        <img src="img/prod/polera-black.webp" alt="Polera Oversized Black" onerror="this.src='img/placeholder.png'">
                     </a>
                     <div class="prod-info">
                         <span class="prod-sku">POL-001</span>
@@ -68,7 +68,71 @@
         </section>
 
         <script src="js/productos-data.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                cargarProductosAdmin();
+            });
 
+            function cargarProductosAdmin() {
+                const productos = obtenerProductos();
+                const slider = document.querySelector(".producto-slider");
+                if (!slider) return;
+
+                slider.innerHTML = "";
+
+                
+                const poleras = productos.filter(p => p.categoria.toUpperCase() === "POL");
+
+                if (poleras.length === 0) {
+                    slider.innerHTML = "<p style='color:#888;'>No hay productos en esta categoría.</p>";
+                    return;
+                }
+
+                poleras.forEach(prod => {
+                    const li = document.createElement("li");
+                    li.className = "producto-card";
+                    li.innerHTML = `
+                        <a href="admin-form-prod.html?sku=${prod.codigo}" class="prod-img-link">
+                            <img src="${prod.imagen}" alt="${prod.nombre}" onerror="this.src='img/placeholder.png'">
+                        </a>
+                        <div class="prod-info">
+                            <span class="prod-sku">${prod.codigo}</span>
+                            <a href="admin-form-prod.html?sku=${prod.codigo}" class="prod-titulo">${prod.nombre}</a>
+                            <p class="prod-precio">$${prod.precio.toLocaleString("es-CL")}</p>
+                        </div>
+                        <div class="stock-control">
+                            <button type="button" class="btn-stock" onclick="modificarStock('${prod.codigo}', -1)">-</button>
+                            <span class="stock-actual" id="stock-${prod.codigo}">${prod.stock}</span>
+                            <button type="button" class="btn-stock" onclick="modificarStock('${prod.codigo}', 1)">+</button>
+                        </div>
+                        <a href="admin-form-prod.html?sku=${prod.codigo}" class="btn-edit-link">
+                            Editar Detalles
+                        </a>
+                    `;
+                    slider.appendChild(li);
+                });
+            }
+
+            function modificarStock(sku, cambio) {
+                const productos = obtenerProductos();
+                const prod = productos.find(p => p.codigo.toUpperCase() === sku.toUpperCase());
+                if (!prod) return;
+
+                const nuevoStock = prod.stock + cambio;
+                if (nuevoStock < 0) return;
+
+                prod.stock = nuevoStock;
+                guardarProductos(productos);
+
+                const span = document.getElementById(`stock-${sku}`);
+                if (span) span.textContent = nuevoStock;
+
+                
+                if (prod.stockCritico && prod.stock <= prod.stockCritico) {
+                    alert(`¡Atención! El stock del producto ${prod.nombre} (${prod.codigo}) ha alcanzado su nivel crítico (${prod.stock} unidades).`);
+                }
+            }
+        </script>
     </body>
 
 

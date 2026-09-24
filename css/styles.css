@@ -132,21 +132,165 @@ body {
 
 }
 
-.badge-role{
+.badge-role {
   display: inline-block;
-  background: rgba(197, 160, 89, 0.2);
-  color: var(--color-gold);
-  padding: 4px 12px;
+  padding: 4px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   border-radius: 20px;
-  font-size: 0.85rem;
-  margin: 10px 0;
-
+   margin: 8px 0 12px 0;
 }
+
+.badge-role.badge-admin {
+    background-color: var(--color-gold, #d4af37);
+    color: #000;
+}
+
+.badge-role.badge-vendedor {
+    background-color: var(--color-purple);
+    color: #fff;
+    border: 1px solid #9c27b0;
+}
+
 
 .profile-email{
   color:#888;
   font-size: 0.9rem;
   margin-bottom: 25px;
+}
+
+/* Layout del contenedor principal de gestión */
+.admin-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.table-container-card {
+    background-color: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.table-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #2a2a2a;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.table-header-flex h2 {
+    font-size: 1.4rem;
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+
+.table-header-flex p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Tabla de Usuarios */
+.table-responsive-admin {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ddd;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.table-usuarios th {
+    background-color: #1f1f1f;
+    color: var(--color-gold, #d4af37);
+    padding: 12px 14px;
+    font-weight: 600;
+    border-bottom: 2px solid #333;
+}
+
+.table-usuarios td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #252525;
+    vertical-align: middle;
+}
+
+.table-usuarios tr:hover {
+    background-color: #1c1c1c;
+}
+
+
+.input-editable {
+    background: #0f0f0f;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-editable:focus {
+    border-color: var(--color-gold, #d4af37);
+    outline: none;
+}
+
+.select-rol-admin {
+    background: #0f0f0f;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.select-rol-admin:focus {
+    border-color: var(--color-gold, #d4af37);
+    outline: none;
+}
+
+
+.btn-save-sm {
+    background-color: var(--color-gold, #d4af37);
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: 0.2s;
+}
+
+.btn-save-sm:hover {
+    background-color: var(--color-gold-hover, #b8932b);
+}
+
+.btn-del-sm {
+    background-color: transparent;
+    color: #ff5252;
+    border: 1px solid #ff5252;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-del-sm:hover {
+    background-color: #ff5252;
+    color: #fff;
 }
 
 

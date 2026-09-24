@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-    if(!localStorage.getItem("usuariosRegistradops")){
+    if(!localStorage.getItem("usuariosRegistrados")){
         const cuentasDePrueba = [
             {
                 nombre:"Carlos",
@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 run:"11111111-1",
                 correo:"carlos@duoc.cl",
                 pass:"1234",
+                rol: "Vendedor",
                 region:"Region Metropolitana",
                 comuna:"Santiago",
                 direccion:"Av. Principal 123"
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 run:"22222222-2",
                 correo:"admin@urbanstyle.cl",
                 pass:"1234",
+                rol:"Administrador",
                 region:"Region Metropolitana",
                 comuna:"Santiago",
                 direccion:"Av Siempre viva 1244"
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     "carlos@duoc.cl"
                 ];
 
-                if(correosAdmin.includes(usuarioEncontrado.correo)){
+                if(correosAdmin.includes(usuarioEncontrado.correo.toLowerCase()) || usuarioEncontrado.rol ==="Administrador" ){
                     window.location.href="admin-home.html";
                 }else{
                     window.location.href = "index.html";

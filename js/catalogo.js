@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function obtenerProductosCatalogo(){
-    const data =localStorage.getItem("urbanstyle_prod");
+    const data =localStorage.getItem("urbanstyle_productos");
     if(!data){
         if(typeof PRODUCTOS !== "undefined"){
-            localStorage.setItem("urbanstyle_prod", JSON.stringify(PRODUCTOS));
+            localStorage.setItem("urbanstyle_productos", JSON.stringify(PRODUCTOS));
             return PRODUCTOS
         }
         return [];
