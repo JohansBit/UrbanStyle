@@ -40,10 +40,72 @@
                     <li class="nav-item"><a class="nav-link" href="carrito.html" aria-label="Carrito de Compras" title="Carrito de Compras"><i class="bi bi-cart"></i></a></li>
                 </ul>
             </div>
-        </nav><!--Fin del NAVBAR-->
-        <br>
-        <footer class="bg-dark text-white text-center py-3 mt-auto">
-            <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
-        </footer>
-    </body>
+        </nav>
+    </header>
+
+    <main class="container my-5 flex-grow-1" id="detalle-container">
+        <!-- Contenido renderizado por URL parámetros -->
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
+    </footer>
+
+    <script src="assets/js/productos-data.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = parseInt(params.get("id"));
+            const producto = PRODUCTOS.find(p => p.id === id);
+            const container = document.getElementById("detalle-container");
+
+            if (!producto) {
+                container.innerHTML = `<h3 class="text-center">Producto no encontrado. <a href="productos.html">Volver al catálogo</a></h3>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="card border-0 shadow-sm p-4">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-6">
+                            <img src="${producto.imagen}" class="img-fluid rounded" alt="${producto.nombre}" style="width: 100%; max-height: 450px; object-fit: cover;">
+                        </div>
+                        <div class="col-md-6">
+                            <span class="badge bg-dark mb-2">${producto.categoria.toUpperCase()}</span>
+                            <h2 class="fw-bold mb-3">${producto.nombre}</h2>
+                            <h3 class="text-primary fw-bold mb-3">$${producto.precio.toLocaleString("es-CL")}</h3>
+                            <p class="text-muted mb-4">${producto.descripcion}</p>
+                            
+                            <div class="d-flex gap-3 align-items-center">
+                                <button onclick="agregarAlCarrito(${producto.id})" class="btn btn-dark btn-lg px-4">Agregar al Carrito</button>
+                                <a href="productos.html" class="btn btn-outline-secondary btn-lg">Volver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+            document.getElementById("cart-counter").textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        });
+
+        function agregarAlCarrito(idProducto) {
+            let carrito = JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+            const itemExistente = carrito.find(item => item.id === idProducto);
+
+            if (itemExistente) {
+                itemExistente.cantidad++;
+            } else {
+                const productoBase = PRODUCTOS.find(p => p.id === idProducto);
+                if (productoBase) carrito.push({ ...productoBase, cantidad: 1 });
+            }
+
+            localStorage.setItem("carrito_urbanstyle", JSON.stringify(carrito));
+            document.getElementById("cart-counter").textContent = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            alert("¡Producto añadido al carrito!");
+        }
+    </script>
+    <script src="js/productos-data.js"></script>
+
+</body>
 </html>
