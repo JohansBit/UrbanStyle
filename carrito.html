@@ -1,49 +1,348 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>UrbanStyle Carrito de Compras</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"><!--conecta con boostrap-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"><!-- se conecta con los iconos de boostrap-->
-        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Hace que la página se adapte al ancho de la pantalla del dispositivo (responsive) -->
-        <link rel="icon" type="image/png" href="img/favicon.png">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-        
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid justify-content-start"><!-- Usa todo el ancho disponible y coloca los elementos desde el comienzo del contenedor -->
-                <a class="navbar-brand" href="index.html">
-                    <img src="img/logo.png" alt="UrbanStyle" width="100" height="50">
-                </a>
-                
-                <ul class="navbar-nav me-auto"><!-- Contiene los elementos del menú de navegación y los alinea a la izquierda -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html"><strong>HOME</strong> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="nosotros.html"><strong>NOSOTROS</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="productos.html"><strong>PRODUCTOS</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blogs.html"><strong>BLOGS</strong></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contacto.html"><strong>CONTACTO</strong></a>
-                    </li>
-                </ul>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - UrbanStyle</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Modern Dark Theme Design Tokens for UrbanStyle */
+        :root {
+            --bg-color: #0f0f12;
+            --card-bg: #18181c;
+            --purple-accent: #6a1b9a;
+            --gold-accent: #d4af37;
+            --gold-hover: #f1c40f;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: #333333;
+        }
 
-                <ul class="navbar-nav ">
-                    <li class="nav-item"><a class="nav-link" href="login.html" aria-label="Iniciar sesión" title="Iniciar Seción"><i class="bi bi-door-open"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="carrito.html" aria-label="Carrito de Compras" title="Carrito de Compras"><i class="bi bi-cart"></i></a></li>
-                </ul>
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+        }
+
+        /* Card Container Styles */
+        .cart-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--purple-accent) !important;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .text-gold {
+            color: var(--gold-accent) !important;
+        }
+
+        /* Custom Table Styling */
+        .table-custom {
+            color: var(--text-main) !important;
+            background-color: transparent !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .table-custom th {
+            color: var(--gold-accent) !important;
+            border-bottom: 2px solid var(--purple-accent) !important;
+            background-color: var(--card-bg) !important;
+            padding: 12px 16px;
+        }
+
+        .table-custom td {
+            color: var(--text-main) !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            background-color: var(--card-bg) !important;
+            padding: 16px;
+        }
+
+        /* Gold Action Buttons */
+        .btn-gold {
+            background-color: var(--gold-accent);
+            color: #000000;
+            font-weight: 700;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-hover);
+            color: #000000;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Quantity Modifier Buttons */
+        .btn-qty {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--purple-accent);
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-qty:hover {
+            background-color: var(--purple-accent);
+            color: #ffffff;
+        }
+
+        /* Product Image Thumbnail */
+        .product-img-thumb {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--purple-accent);
+        }
+
+        /* Custom scrollbar for table */
+        .table-responsive::-webkit-scrollbar {
+            height: 6px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: var(--purple-accent);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header>
+        <h1 class="text-center my-3 fw-bold" style="color: var(--gold-accent); letter-spacing: 1px;">URBANSTYLE</h1>
+        <nav class="navbar navbar-expand-lg border-bottom" style="background-color: #000; border-color: var(--purple-accent) !important;">
+            <div class="container">
+                <a class="navbar-brand fw-bold" style="color: var(--gold-accent);" href="index.html">URBANSTYLE</a>
+                <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav gap-2 align-items-center">
+                        <li class="nav-item"><a class="nav-link text-white" href="index.html">HOME</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="productos.html">PRODUCTOS</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="contacto.html">CONTACTO</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link btn px-3 ms-lg-3 text-dark fw-bold text-decoration-none" style="background-color: var(--gold-accent);" href="carrito.html">
+                                CARRITO (<span id="cart-counter">0</span>)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </nav><!--Fin del NAVBAR-->
-        <br>
-        <footer class="bg-dark text-white text-center py-3 mt-auto">
-            <p class="m-0">UrbanStyle Boutique &copy; 2026</p>
-        </footer>
-    </body>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container my-5 flex-grow-1">
+        <h2 class="fw-bold mb-4" style="color: var(--gold-accent); text-transform: uppercase;">Carrito de Compras</h2>
+
+        <div class="row g-4">
+            <!-- LEFT COLUMN: SHOPPING CART TABLE -->
+            <div class="col-lg-8">
+                <div class="cart-card table-responsive">
+                    <table class="table table-custom align-middle m-0">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th class="text-center">Cantidad</th>
+                                <th>Subtotal</th>
+                                <th class="text-end">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-carrito">
+                            <!-- Dynamic Content Rendered via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: ORDER SUMMARY -->
+            <div class="col-lg-4">
+                <div class="cart-card">
+                    <h4 class="fw-bold mb-3" style="color: var(--gold-accent);">Resumen del Pedido</h4>
+                    <hr style="border-color: var(--purple-accent);">
+                    
+                    <div class="d-flex justify-content-between align-items-center fs-5 fw-bold mb-4">
+                        <span>Total:</span>
+                        <span id="total-precio" style="color: var(--gold-accent); font-size: 1.5rem;">$0</span>
+                    </div>
+
+                    <button onclick="procesarCompra()" class="btn-gold">Ir al Pago / Checkout</button>
+                    
+                    <div class="mt-3 text-center">
+                        <a href="productos.html" class="text-decoration-none text-light opacity-75 hover-opacity-100">
+                            ← Seguir comprando
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-3 mt-auto border-top" style="background-color: var(--card-bg); border-color: var(--border-color) !important;">
+        <p class="m-0" style="color: var(--text-muted);">UrbanStyle Boutique &copy; 2026</p>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SHOPPING CART JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            renderizarCarrito();
+        });
+
+        // Fetch cart array from LocalStorage
+        function obtenerCarrito() {
+            return JSON.parse(localStorage.getItem("carrito_urbanstyle")) || [];
+        }
+
+        // Save cart state and re-render view
+        function guardarCarrito(carrito) {
+            localStorage.setItem("carrito_urbanstyle", JSON.stringify(carrito));
+            renderizarCarrito();
+        }
+
+        // Format currency helper function (CLP)
+        function formatMoneda(monto) {
+            return `$${monto.toLocaleString("es-CL")}`;
+        }
+
+        // Render Cart HTML elements
+        function renderizarCarrito() {
+            const carrito = obtenerCarrito();
+            const tabla = document.getElementById("tabla-carrito");
+            const totalElemento = document.getElementById("total-precio");
+            const badgeCounter = document.getElementById("cart-counter");
+
+            // Update item counter badge on top navbar
+            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            if (badgeCounter) badgeCounter.textContent = totalItems;
+
+            // Empty cart state handler
+            if (carrito.length === 0) {
+                tabla.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
+                            <p class="mb-3 fs-5 text-white">Tu carrito está vacío 🛒</p>
+                            <a href="productos.html" class="btn btn-sm fw-bold" style="background-color: var(--gold-accent); color: #000;">Ver Catálogo</a>
+                        </td>
+                    </tr>
+                `;
+                totalElemento.textContent = formatMoneda(0);
+                return;
+            }
+
+            // Populate table rows with stored items
+            let totalGeneral = 0;
+            tabla.innerHTML = carrito.map(item => {
+                const subtotal = item.precio * item.cantidad;
+                totalGeneral += subtotal;
+
+                // Fallback image handling
+                const imgSrc = item.imagen || `https://placehold.co/60x60/18181c/d4af37?text=${encodeURIComponent(item.nombre || 'Item')}`;
+
+                return `
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="${imgSrc}" alt="${item.nombre}" class="product-img-thumb" onerror="this.src='https://placehold.co/60x60/18181c/d4af37?text=UrbanStyle'">
+                                <div>
+                                    <strong class="text-white d-block">${item.nombre}</strong>
+                                    <small class="text-uppercase" style="color: var(--gold-accent); font-size: 0.75rem;">${item.genero || 'Unisex'}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${formatMoneda(item.precio)}</td>
+                        <td>
+                            <div class="d-flex align-items-center justify-content-center gap-2">
+                                <button class="btn-qty" onclick="cambiarCantidad(${item.id}, -1)" title="Disminuir cantidad">-</button>
+                                <span class="fw-bold px-2">${item.cantidad}</span>
+                                <button class="btn-qty" onclick="cambiarCantidad(${item.id}, 1)" title="Aumentar cantidad">+</button>
+                            </div>
+                        </td>
+                        <td class="fw-bold" style="color: var(--gold-accent);">${formatMoneda(subtotal)}</td>
+                        <td class="text-end">
+                            <button onclick="eliminarProducto(${item.id})" class="btn btn-outline-danger btn-sm" title="Eliminar producto">
+                                ✕
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+
+            // Update order total sum
+            totalElemento.textContent = formatMoneda(totalGeneral);
+        }
+
+        // Adjust product quantity (+ / -)
+        function cambiarCantidad(id, cambio) {
+            let carrito = obtenerCarrito();
+            const producto = carrito.find(item => item.id === id);
+
+            if (producto) {
+                producto.cantidad += cambio;
+                if (producto.cantidad <= 0) {
+                    carrito = carrito.filter(item => item.id !== id);
+                }
+                guardarCarrito(carrito);
+            }
+        }
+
+        // Remove item from cart
+        function eliminarProducto(id) {
+            let carrito = obtenerCarrito();
+            carrito = carrito.filter(item => item.id !== id);
+            guardarCarrito(carrito);
+        }
+
+        // Checkout process simulation
+        function procesarCompra() {
+            const carrito = obtenerCarrito();
+            if (carrito.length === 0) {
+                mostrarNotificacion("Tu carrito está vacío.");
+                return;
+            }
+            
+            mostrarNotificacion("¡Gracias por tu compra en UrbanStyle! Tu pedido ha sido procesado.");
+            localStorage.removeItem("carrito_urbanstyle");
+            renderizarCarrito();
+        }
+
+        // Custom notification dialog (replaces alert)
+        function mostrarNotificacion(mensaje) {
+            const modalDiv = document.createElement("div");
+            modalDiv.className = "position-fixed top-50 start-50 translate-middle p-4 rounded text-center shadow-lg";
+            modalDiv.style.cssText = "background-color: #18181c; border: 2px solid #6a1b9a; z-index: 9999; max-width: 90%; width: 350px;";
+            
+            modalDiv.innerHTML = `
+                <h5 class="fw-bold mb-3" style="color: #d4af37;">UrbanStyle</h5>
+                <p class="text-white mb-4">${mensaje}</p>
+                <button class="btn-gold" onclick="this.parentElement.remove()">Aceptar</button>
+            `;
+            
+            document.body.appendChild(modalDiv);
+        }
+    </script>
+</body>
 </html>
