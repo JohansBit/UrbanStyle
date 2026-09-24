@@ -11,6 +11,7 @@ const PRODUCTOS_BASE = [
         imagen: "img/prod/polera-black.webp",
         descripcion: "Polera lisa de corte boxy fit en algodón pesado 240 GSM con cuello cerrado acanalado."
     },
+
     {
         id: 2,
         codigo: "POL-002",
@@ -22,6 +23,7 @@ const PRODUCTOS_BASE = [
         imagen: "img/prod/hoodie-acid-wash.webp",
         descripcion: "Polerón con capucha y efecto lavado ácido púrpura vintage, bolsillo canguro y calce holgado."
     },
+
     {
         id: 3,
         codigo: "POL-003",
@@ -88,6 +90,7 @@ const PRODUCTOS_BASE = [
         imagen: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
         descripcion: "Zapatillas exclusivas de edición limitada con suela de alta tracción y capellada de cuero."
     },
+
     {
         id: 9,
         codigo: "ACC-001",
